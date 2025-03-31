@@ -29,31 +29,31 @@ A full-stack web application showcasing AI/ML implementations with interactive d
 ## Installation Guide 🚀
 1. Clone repository:
 
-''' bash
+```
 git clone https://github.com/TFelbor/ai-library.git
 cd ai-library
-'''
+```
 
 2. Set up backend:
 
-''' bash
+```
 cd backend
 npm install
 cp .env.example .env
 npm run dev
-'''
+```
 
 3. Set up frontend:
 
-''' bash
+```
 cd ../frontend
 npm install
 npm run dev
-'''
+```
 
 ## Project Structure 📂
 
-''' bash
+```
 ├── backend
 │ ├── controllers/  # API controllers
 │ ├── models/       # MongoDB schemas
@@ -66,15 +66,15 @@ npm run dev
 │ │ ├── features/   # Redux slices
 │ │ ├── models/     # TypeScript interfaces
 │ │ └── pages/      # Route components
-'''
+```
 
 ## Contributing 🤝
 1. Fork the repository
 2. Create feature branch:
 
-''' bash
+```
 git checkout -b feature/your-feature
-'''
+```
 
 3. Commit changes following [Conventional Commits](https://www.conventionalcommits.org/)
 4. Push to branch and open a PR
