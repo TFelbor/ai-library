@@ -5,7 +5,7 @@ import { initialResources, categories } from '../data/resources';
 import type { Resource, ResourceSubmission } from '../types';
 
 export default function Library() {
-  const [resources] = useState<Resource[]>(initialResources);
+  const [resources, setResources] = useState<Resource[]>(initialResources);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [showForm, setShowForm] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
@@ -40,7 +40,22 @@ export default function Library() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+    
+    // Create a new resource from the form data
+    const newResource: Resource = {
+      id: (resources.length + 1).toString(),
+      name: formData.resourceName,
+      description: formData.description,
+      url: formData.resourceUrl,
+      category: formData.category === 'new' && formData.newCategory 
+        ? formData.newCategory 
+        : formData.category
+    };
+    
+    // Add the new resource to the resources array
+    setResources([...resources, newResource]);
+    
+    // Reset the form
     setFormData({
       name: '',
       email: '',
@@ -49,19 +64,24 @@ export default function Library() {
       description: '',
       category: categories[0]
     });
+    
+    // Close the form modal
     setShowForm(false);
+    
+    // Show a success message
+    alert('Resource submitted successfully!');
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 py-12">
+    <div className="min-h-screen bg-white dark:bg-gray-900 py-12 transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-12"
         >
-          <h1 className="text-4xl font-bold text-white mb-4">AI Resource Library</h1>
-          <p className="text-gray-300">Discover and share valuable AI resources with the community</p>
+          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">AI Resource Library</h1>
+          <p className="text-gray-600 dark:text-gray-300">Discover and share valuable AI resources with the community</p>
         </motion.div>
 
         <motion.div
@@ -77,7 +97,7 @@ export default function Library() {
             className={`px-4 py-2 rounded-full ${
               selectedCategory === 'all'
                 ? 'bg-purple-600 text-white'
-                : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                : 'bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
             }`}
           >
             All
@@ -91,7 +111,7 @@ export default function Library() {
               className={`px-4 py-2 rounded-full ${
                 selectedCategory === category
                   ? 'bg-purple-600 text-white'
-                  : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
               }`}
             >
               {category}
@@ -111,18 +131,18 @@ export default function Library() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              className="bg-gray-800 rounded-lg p-6 shadow-lg transform transition-all duration-300 hover:scale-105"
+              className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg transform transition-all duration-300 hover:scale-105 border border-gray-100 dark:border-gray-700"
             >
-              <h3 className="text-xl font-semibold text-white mb-2">{resource.name}</h3>
-              <p className="text-gray-300 mb-4">{resource.description}</p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">{resource.name}</h3>
+              <p className="text-gray-600 dark:text-gray-300 mb-4">{resource.description}</p>
               <div className="flex justify-between items-center">
-                <span className="text-purple-400 text-sm">{resource.category}</span>
+                <span className="text-purple-600 dark:text-purple-400 text-sm">{resource.category}</span>
                 <motion.a
                   whileHover={{ scale: 1.1 }}
                   href={resource.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center text-purple-400 hover:text-purple-300"
+                  className="inline-flex items-center text-purple-600 hover:text-purple-700 dark:text-purple-400 dark:hover:text-purple-300"
                 >
                   Visit <ExternalLink className="ml-1 h-4 w-4" />
                 </motion.a>
@@ -161,7 +181,7 @@ export default function Library() {
                 initial={{ scale: 0.95, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.95, opacity: 0 }}
-                className="bg-gray-800 rounded-lg p-8 max-w-md w-full relative"
+                className="bg-white dark:bg-gray-800 rounded-lg p-8 max-w-md w-full relative shadow-xl border border-gray-100 dark:border-gray-700"
               >
                 <button
                   onClick={() => setShowForm(false)}
@@ -169,64 +189,64 @@ export default function Library() {
                 >
                   <X className="h-6 w-6" />
                 </button>
-                <h2 className="text-2xl font-bold text-white mb-6">Submit a Resource</h2>
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Submit a Resource</h2>
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
-                    <label className="block text-gray-300 mb-2">Your Name</label>
+                    <label className="block text-gray-700 dark:text-gray-300 mb-2">Your Name</label>
                     <input
                       type="text"
                       value={formData.name}
                       onChange={e => setFormData({...formData, name: e.target.value})}
-                      className="w-full bg-gray-700 text-white rounded px-3 py-2 focus:ring-2 focus:ring-purple-400 focus:outline-none"
+                      className="w-full bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white rounded px-3 py-2 focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400 focus:outline-none"
                       required
                     />
                   </div>
                   <div>
-                    <label className="block text-gray-300 mb-2">Your Email</label>
+                    <label className="block text-gray-700 dark:text-gray-300 mb-2">Your Email</label>
                     <input
                       type="email"
                       value={formData.email}
                       onChange={e => setFormData({...formData, email: e.target.value})}
-                      className="w-full bg-gray-700 text-white rounded px-3 py-2 focus:ring-2 focus:ring-purple-400 focus:outline-none"
+                      className="w-full bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white rounded px-3 py-2 focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400 focus:outline-none"
                       required
                     />
                   </div>
                   <div>
-                    <label className="block text-gray-300 mb-2">Resource Name</label>
+                    <label className="block text-gray-700 dark:text-gray-300 mb-2">Resource Name</label>
                     <input
                       type="text"
                       value={formData.resourceName}
                       onChange={e => setFormData({...formData, resourceName: e.target.value})}
-                      className="w-full bg-gray-700 text-white rounded px-3 py-2 focus:ring-2 focus:ring-purple-400 focus:outline-none"
+                      className="w-full bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white rounded px-3 py-2 focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400 focus:outline-none"
                       required
                     />
                   </div>
                   <div>
-                    <label className="block text-gray-300 mb-2">Resource URL</label>
+                    <label className="block text-gray-700 dark:text-gray-300 mb-2">Resource URL</label>
                     <input
                       type="url"
                       value={formData.resourceUrl}
                       onChange={e => setFormData({...formData, resourceUrl: e.target.value})}
-                      className="w-full bg-gray-700 text-white rounded px-3 py-2 focus:ring-2 focus:ring-purple-400 focus:outline-none"
+                      className="w-full bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white rounded px-3 py-2 focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400 focus:outline-none"
                       required
                     />
                   </div>
                   <div>
-                    <label className="block text-gray-300 mb-2">Description</label>
+                    <label className="block text-gray-700 dark:text-gray-300 mb-2">Description</label>
                     <textarea
                       value={formData.description}
                       onChange={e => setFormData({...formData, description: e.target.value})}
-                      className="w-full bg-gray-700 text-white rounded px-3 py-2 focus:ring-2 focus:ring-purple-400 focus:outline-none"
+                      className="w-full bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white rounded px-3 py-2 focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400 focus:outline-none"
                       rows={3}
                       required
                     />
                   </div>
                   <div>
-                    <label className="block text-gray-300 mb-2">Category</label>
+                    <label className="block text-gray-700 dark:text-gray-300 mb-2">Category</label>
                     <select
                       value={formData.category}
                       onChange={e => setFormData({...formData, category: e.target.value})}
-                      className="w-full bg-gray-700 text-white rounded px-3 py-2 focus:ring-2 focus:ring-purple-400 focus:outline-none"
+                      className="w-full bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white rounded px-3 py-2 focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400 focus:outline-none"
                       required
                     >
                       {categories.map(category => (
@@ -243,12 +263,12 @@ export default function Library() {
                       animate={{ opacity: 1, height: 'auto' }}
                       exit={{ opacity: 0, height: 0 }}
                     >
-                      <label className="block text-gray-300 mb-2">New Category Name</label>
+                      <label className="block text-gray-700 dark:text-gray-300 mb-2">New Category Name</label>
                       <input
                         type="text"
                         value={formData.newCategory}
                         onChange={e => setFormData({...formData, newCategory: e.target.value})}
-                        className="w-full bg-gray-700 text-white rounded px-3 py-2 focus:ring-2 focus:ring-purple-400 focus:outline-none"
+                        className="w-full bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white rounded px-3 py-2 focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400 focus:outline-none"
                         required
                       />
                     </motion.div>
@@ -259,7 +279,7 @@ export default function Library() {
                       whileTap={{ scale: 0.95 }}
                       type="button"
                       onClick={() => setShowForm(false)}
-                      className="px-4 py-2 text-gray-300 hover:text-white"
+                      className="px-4 py-2 text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
                     >
                       Cancel
                     </motion.button>
