@@ -3,7 +3,8 @@
 A full-stack web application showcasing AI/ML implementations with interactive demos and educational resources. Built with modern web technologies for seamless integration of machine learning models into web interfaces.
 
 **Live Demo**: [ai-library-tfelbor.netlify.app](https://ai-library-tfelbor.netlify.app/)  
-[![Netlify Status](https://api.netlify.com/api/v1/badges/xxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/deploy-status)](https://app.netlify.com/sites/ai-library-tfelbor/deploys)
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/85620708-e5b8-491e-992a-1c473fd7cb92/deploy-status)](https://app.netlify.com/sites/ai-library-tfelbor/deploys)
 
 ## Key Features ✨
 - Interactive AI model demonstrations
