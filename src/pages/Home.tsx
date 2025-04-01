@@ -3,6 +3,7 @@ import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import StatsPanel from '../components/StatsPanel';
 import { siteStats } from '../data/resources';
+import homeImage from '../../lib_home.jpg';
 
 export default function Home() {
   return (
@@ -48,7 +49,7 @@ export default function Home() {
             className="mt-10"
           >
             <img
-              src="lib_home.jpg"
+              src={homeImage}
               alt="AI Visualization"
               className="rounded-lg shadow-2xl mx-auto max-w-2xl"
             />
