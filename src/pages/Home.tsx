@@ -48,7 +48,7 @@ export default function Home() {
             className="mt-10"
           >
             <img
-              src="https://www.google.com/imgres?q=digital%20library%20images&imgurl=https%3A%2F%2Fpublishdrive.com%2Fmedia%2Fposts%2F191%2Fhow-to-get-your-books-into-libraries.png&imgrefurl=https%3A%2F%2Fpublishdrive.com%2Fhow-to-get-your-books-into-libraries.html&docid=MyTMfny8MNyyOM&tbnid=dOVE7E5ptkrJKM&vet=12ahUKEwjkiO7yi7eMAxU2wvACHf5XBxIQM3oECFQQAA..i&w=1200&h=630&hcb=2&ved=2ahUKEwjkiO7yi7eMAxU2wvACHf5XBxIQM3oECFQQAA"
+              src="lib_home.jpg"
               alt="AI Visualization"
               className="rounded-lg shadow-2xl mx-auto max-w-2xl"
             />
