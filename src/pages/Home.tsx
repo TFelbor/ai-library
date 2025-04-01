@@ -48,7 +48,7 @@ export default function Home() {
             className="mt-10"
           >
             <img
-              src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=1200"
+              src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.freepik.com%2Ffree-photos-vectors%2Fdigital-library&psig=AOvVaw2ArQpkSqvr5-6qUJ7FJDds&ust=1743605800525000&source=images&cd=vfe&opi=89978449&ved=0CBYQjRxqFwoTCMikw_6Lt4wDFQAAAAAdAAAAABA1"
               alt="AI Visualization"
               className="rounded-lg shadow-2xl mx-auto max-w-2xl"
             />

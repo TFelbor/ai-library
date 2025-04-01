@@ -7,7 +7,7 @@ export default function About() {
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-8 border border-gray-100 dark:border-gray-700">
           <div className="text-center">
             <img
-              src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?auto=format&fit=crop&q=80&w=400"
+              src="https://media.licdn.com/dms/image/v2/C4E03AQFiUj-2xGN6jw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1656319277398?e=1749081600&v=beta&t=CyE3FbbzDxnubGpDwdr_iyeY4iN21LARWjCi-aRPU50"
               alt="Profile"
               className="w-32 h-32 rounded-full mx-auto mb-4 object-cover"
             />
