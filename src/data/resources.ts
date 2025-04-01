@@ -34,8 +34,8 @@ export const categories = [
 ];
 
 export const siteStats: SiteStats = {
-  visitors: 1205,
+  visitors: 1,
   categoryCount: categories.length,
   resourceCount: initialResources.length,
-  deployDate: '2024-03-01'
+  deployDate: '2024-03-29'
 };
