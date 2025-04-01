@@ -22,7 +22,7 @@ export default function Home() {
               transition={{ delay: 0.2 }}
               className="block"
             >
-              Discover the World of
+              Discover the World of A.I. &
             </motion.span>
             <motion.span
               initial={{ opacity: 0 }}
@@ -30,7 +30,7 @@ export default function Home() {
               transition={{ delay: 0.4 }}
               className="block text-purple-600 dark:text-purple-400"
             >
-              Artificial Intelligence
+              What it has to offer!
             </motion.span>
           </h1>
           <motion.p
@@ -39,7 +39,7 @@ export default function Home() {
             transition={{ delay: 0.6 }}
             className="mt-3 max-w-md mx-auto text-base text-gray-600 dark:text-gray-300 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl"
           >
-            Explore our curated collection of AI resources, tools, and platforms. Find everything you need to start your AI journey.
+            Explore my curated collection of AI resources, tools, and platforms. Find everything you need to start your AI journey.
           </motion.p>
           
           <motion.div
@@ -50,7 +50,7 @@ export default function Home() {
           >
             <img
               src={homeImage}
-              alt="AI Visualization"
+              alt="image"
               className="rounded-lg shadow-2xl mx-auto max-w-2xl"
             />
           </motion.div>

@@ -18,15 +18,12 @@ export default function Navbar() {
             </Link>
           </div>
           
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
+          <div className="flex items-center space-x-4">
+            <div className="hidden md:flex items-center space-x-4 mr-4">
               <Link to="/" className="hover:text-purple-600 dark:hover:text-purple-400 px-3 py-2 rounded-md text-sm font-medium">Home</Link>
               <Link to="/library" className="hover:text-purple-600 dark:hover:text-purple-400 px-3 py-2 rounded-md text-sm font-medium">Library</Link>
               <Link to="/about" className="hover:text-purple-600 dark:hover:text-purple-400 px-3 py-2 rounded-md text-sm font-medium">About</Link>
             </div>
-          </div>
-          
-          <div className="flex items-center space-x-2">
             <button
               onClick={toggleTheme}
               className="p-2 rounded-md text-gray-600 hover:text-purple-600 dark:text-gray-300 dark:hover:text-purple-400 focus:outline-none"
