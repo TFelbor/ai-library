@@ -1,0 +1,10 @@
+{
+  "name": "admin-scripts",
+  "type": "module",
+  "dependencies": {
+    "inquirer": "^9.2.15",
+    "chalk": "^5.3.0",
+    "dotenv": "^16.4.7",
+    "jsonwebtoken": "^9.0.2"
+  }
+}

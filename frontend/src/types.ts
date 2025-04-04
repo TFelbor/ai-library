@@ -4,6 +4,12 @@ export interface Resource {
   description: string;
   url: string;
   category: string;
+  status: 'pending' | 'approved' | 'rejected';
+  submittedBy: {
+    name: string;
+    email: string;
+  };
+  submittedAt: string;
 }
 
 export interface ResourceSubmission {

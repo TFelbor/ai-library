@@ -1,13 +1,15 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Plus, X } from 'lucide-react';
+import { ExternalLink, Plus, X, RefreshCw } from 'lucide-react';
 import { initialResources, categories } from '../data/resources';
 import type { Resource, ResourceSubmission } from '../types';
+import { api } from '../utils/api';
 
 export default function Library() {
   const [resources, setResources] = useState<Resource[]>(initialResources);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [showForm, setShowForm] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
   const [formData, setFormData] = useState<ResourceSubmission>({
     name: '',
@@ -18,9 +20,44 @@ export default function Library() {
     category: categories[0]
   });
 
-  const filteredResources = selectedCategory === 'all'
-    ? resources
-    : resources.filter(resource => resource.category === selectedCategory);
+  const filteredResources = resources
+    .filter(resource => resource.status === 'approved')
+    .filter(resource => selectedCategory === 'all' || resource.category === selectedCategory);
+
+  // Function to fetch approved resources
+  const fetchApprovedResources = async () => {
+    try {
+      setIsLoading(true);
+      console.log('Fetching approved resources...');
+      const approvedResources = await api.getApprovedResources();
+      console.log('Resources fetched:', approvedResources);
+
+      if (approvedResources && Array.isArray(approvedResources)) {
+        if (approvedResources.length > 0) {
+          console.log('Setting resources:', approvedResources);
+          setResources(approvedResources);
+          // Show success message
+          alert(`Successfully loaded ${approvedResources.length} approved resources!`);
+        } else {
+          console.log('No approved resources found, using initial resources');
+          alert('No approved resources found. Resources may still be pending approval.');
+        }
+      } else {
+        console.error('Invalid response format:', approvedResources);
+        alert('Error: Invalid response format from server');
+      }
+    } catch (error) {
+      console.error('Error fetching approved resources:', error);
+      alert(`Error fetching resources: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Fetch approved resources from the API when the component mounts
+  useEffect(() => {
+    fetchApprovedResources();
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -38,38 +75,42 @@ export default function Library() {
     };
   }, [showForm]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Create a new resource from the form data
-    const newResource: Resource = {
-      id: (resources.length + 1).toString(),
-      name: formData.resourceName,
-      description: formData.description,
-      url: formData.resourceUrl,
-      category: formData.category === 'new' && formData.newCategory 
-        ? formData.newCategory 
-        : formData.category
-    };
-    
-    // Add the new resource to the resources array
-    setResources([...resources, newResource]);
-    
-    // Reset the form
-    setFormData({
-      name: '',
-      email: '',
-      resourceName: '',
-      resourceUrl: '',
-      description: '',
-      category: categories[0]
-    });
-    
-    // Close the form modal
-    setShowForm(false);
-    
-    // Show a success message
-    alert('Resource submitted successfully!');
+
+    try {
+      // Prepare the resource submission data
+      const submission: ResourceSubmission = {
+        resourceName: formData.resourceName,
+        description: formData.description,
+        resourceUrl: formData.resourceUrl,
+        category: formData.category === 'new' && formData.newCategory
+          ? formData.newCategory
+          : formData.category,
+        name: formData.name,
+        email: formData.email
+      };
+
+      // Use the API utility to submit the resource
+      await api.submitResource(submission);
+
+      // Reset form and close modal
+      setFormData({
+        name: '',
+        email: '',
+        resourceName: '',
+        resourceUrl: '',
+        description: '',
+        category: categories[0]
+      });
+      setShowForm(false);
+
+      // Show success message
+      alert('Resource submitted successfully! It will be visible after review.');
+    } catch (error) {
+      alert('Failed to submit resource. Please try again.');
+      console.error('Error submitting resource:', error);
+    }
   };
 
   return (
@@ -117,6 +158,18 @@ export default function Library() {
               {category}
             </motion.button>
           ))}
+
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={fetchApprovedResources}
+            className="px-4 py-2 rounded-full bg-blue-500 text-white hover:bg-blue-600 flex items-center"
+            title="Refresh resources"
+            disabled={isLoading}
+          >
+            <RefreshCw className={`w-4 h-4 mr-1 ${isLoading ? 'animate-spin' : ''}`} />
+            {isLoading ? 'Loading...' : 'Refresh'}
+          </motion.button>
         </motion.div>
 
         <motion.div

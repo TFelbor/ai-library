@@ -3,7 +3,8 @@ import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import StatsPanel from '../components/StatsPanel';
 import { siteStats } from '../data/resources';
-import homeImage from '../../lib_home.jpg';
+// Using image from public directory
+const homeImage = '/images/lib_home.jpg';
 
 export default function Home() {
   return (
@@ -41,7 +42,7 @@ export default function Home() {
           >
             Explore my curated collection of AI resources, tools, and platforms. Find everything you need to start your AI journey.
           </motion.p>
-          
+
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
