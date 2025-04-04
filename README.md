@@ -168,6 +168,30 @@ git checkout -b feature/your-feature
 3. Commit changes following [Conventional Commits](https://www.conventionalcommits.org/)
 4. Push to branch and open a PR
 
+## Deployment 🚀
+
+### Deploying to Netlify
+
+This project is configured for easy deployment to Netlify. The repository includes:
+
+- `netlify.toml` configuration file
+- Build scripts optimized for Netlify deployment
+- Proper redirects for SPA routing
+
+To deploy to Netlify:
+
+1. Push your code to GitHub
+2. Connect your repository to Netlify
+3. Use the following build settings:
+   - Build command: `npm run netlify-build`
+   - Publish directory: `frontend/dist`
+
+### Environment Variables
+
+For production deployment, the following environment variables are recommended:
+
+- `NODE_VERSION`: Set to `18` or higher
+
 ## License 📄
 
 MIT License - see [LICENSE](https://github.com/TFelbor/ai-resource-library/blob/main/LICENSE) for details

@@ -8,7 +8,8 @@
     "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
     "dev:frontend": "cd frontend && npm run dev",
     "dev:backend": "cd backend && npm run dev",
-    "build": "cd frontend && npm run build",
+    "build": "cd frontend && npm install && npm run build",
+    "netlify-build": "chmod +x netlify-build.sh && ./netlify-build.sh",
     "start:backend": "cd backend && npm run start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
