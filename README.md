@@ -197,5 +197,3 @@ For production deployment, the following environment variables are recommended:
 MIT License - see [LICENSE](https://github.com/TFelbor/ai-resource-library/blob/main/LICENSE) for details
 
 ---
-
-**Created by** TFelbor
