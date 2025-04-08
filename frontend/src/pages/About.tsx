@@ -18,7 +18,7 @@ export default function About() {
           <div className="mb-8">
             <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">About Me</h2>
             <p className="text-gray-600 dark:text-gray-300">
-              I'm passionate about exploring the intersection of artificial intelligence and web development. With a background in computer science and machine learning, I create applications that make AI more accessible and useful for everyone. This AI Resource Library is my way of sharing valuable tools and resources with the community.
+              I'm passionate about exploring the artificial intelligence revolution! With a background in computer science, I want to create apps that make AI more accessible and useful for everyone. This AI Resource Library was an attempt of sharing valuable tools and resources with the community, but it needs a change of direction in order to succeed. I'm hoping to soon tranform this into a more developed version of a similar idea, but collecting specifically AI agents.
             </p>
             <p className="text-gray-600 dark:text-gray-300 mt-4">
               When I'm not coding, you can find me reading about the latest AI research, contributing to open-source projects, or exploring new technologies that can enhance user experiences.
