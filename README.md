@@ -1,6 +1,7 @@
 # AI Resource Library 🤖
 
 A full-stack web application for discovering, sharing, and managing AI resources. Built with modern web technologies, this platform allows users to browse curated AI tools and submit new resources for review.
+Soon to be tranformed into AI Agent Library... Hoping for this project to turn into an opensource project where developers are allowed submit their agents, both free and paid for more advanced and sophisticated agents. 
 
 **Live Demo** → [ai-library-tfelbor.netlify.app](https://ai-library-tfelbor.netlify.app/)
 
