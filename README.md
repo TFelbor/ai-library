@@ -3,7 +3,7 @@
 A full-stack web application for discovering, sharing, and managing AI resources. Built with modern web technologies, this platform allows users to browse curated AI tools and submit new resources for review.
 Soon to be tranformed into AI Agent Library... Hoping for this project to turn into an opensource project where developers are allowed submit their agents, both free and paid for more advanced and sophisticated agents. 
 
-**Live Demo** → [ai-library-tfelbor.netlify.app](https://ai-library-tfelbor.netlify.app/)
+**Live Demo** → [ai-library-tfelbor.netlify.app](https://ai-library-tfelbor.netlify.app/) (takes about 30 seconds)
 
 **Website Status** → [![Netlify Status](https://api.netlify.com/api/v1/badges/85620708-e5b8-491e-992a-1c473fd7cb92/deploy-status)](https://app.netlify.com/sites/ai-library-tfelbor/deploys)
 
